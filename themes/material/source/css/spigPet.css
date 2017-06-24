@@ -36,8 +36,8 @@ body{ font-size:12px;}
     cursor: move;
 }
 .mumu{
-    width:215px;
-    height:198px;
+    width:150px;
+    height:138px;
     cursor: move;
     background:url(../img/minions.png) no-repeat;
 }
