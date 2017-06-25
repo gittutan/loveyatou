@@ -56,7 +56,7 @@ thumbnail:
 #         type available value: A (animal), C (culture), N (nature), S (space), T (travel)
 background:
     purecolor: "#F5F5F5"
-    bgimg: "/img/bg1.png"
+    bgimg: "/img/bg.png"
     bing:
         enable: false
         parameter:

@@ -2,26 +2,25 @@
 var _move = false,
     ismove = false, //移动标记,
     isanimate=false,
-    stat_click=0,
     _x, _y, //鼠标离控件左上角的相对位置
     move_factor = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, -0.1, -0.2, -0.3, -0.4, -0.5, -0.6, -0.7, -0.75],
-    mouseover_msgs=["陪我聊天吧！", "好无聊哦，你都不陪我玩！", "我可爱吧！嘻嘻!~^_^!~~", "求抱抱，么么！！", "隐身术，哈撒给", "隐身了！看不见看不见看不见！", "就知道动手动脚，我要喊人了啊！", "人！人！人！"],
+    mouseover_msgs=["看我看我看我~~~", "快看我~~~~", "小伙子，这边这边",  "隐身术", "我隐身了！", "你谁，谁啊，谁？"],
     dayStr = ['今天', '明天', '后天'],
-    click_msgs_least = ["你有完没完呀？",  "非礼呀！救命"],
-    click_msgs_most = ["我飞！", "我跑呀跑呀跑！~~", "惹不起你，我还躲不起你么？", "干嘛动我呀！", "不要摸我", "干嘛老摸我啊？", "非礼呀！！！！！", "我也要摸你！", "色狼啊啊！"];
+    click_msgs_least = ["这个人简直是个怪物！",  "你这样的话，我会很生气的！"],
+    click_msgs_most = ["我闪！", "我再闪！~~",  "你敢动我？！", "你再动，你再动！",  "这个人，简直是个皇帝！", "这个是真的牛匹！","这样的操作对我来说不是很正常吗？"];
 $(function() {
     if (isindex) { //如果是主页
         var now = (new Date()).getHours();
         if (now > 0 && now <= 6) {
-            showMessage(visitor + ' 夜猫子儿，你会被床封印的，O(∩_∩)O~', 6000);
+            showMessage(visitor + ' 夜猫子儿，干  嘛，٩(๑❛ᴗ❛๑)۶~', 6000);
         } else if (now > 6 && now <= 11) {
-            showMessage(visitor + ' 早上好，来一发儿？(*^__^*) 嘻嘻……', 6000);
+            showMessage(visitor + ' 早上好，你来了啊，(๑*◡*๑)~  嘻嘻……', 6000);
         } else if (now > 11 && now <= 14) {
-            showMessage(visitor + ' 中午了呢，来一发儿?(*^__^*) 嘻嘻……', 6000);
+            showMessage(visitor + ' 中午了呢，(づ｡◕ᴗᴗ◕｡)づ~  嘻嘻……', 6000);
         } else if (now > 14 && now <= 18) {
-            showMessage(visitor + ' 快来快活啊，反正有大把时光！^_^ ', 6000);
+            showMessage(visitor + ' 干 哈！ ( • ̀ω•́ )~  嘻嘻……', 6000);
         } else {
-            showMessage(visitor + ' 想干啥！', 6000);
+            showMessage(visitor + ' 想干点儿哈！', 6000);
         }
     }
     else {
@@ -47,15 +46,15 @@ function init() {
         {queue: false, duration: 1000}
     ).mousedown(function (e) {
         if (e.which == 3) {
-            showMessage("秘密通道:<br /><a href=\"http://www.loveyatou.com\" title=\"首页\">首页</a>", 10000);
+            showMessage("秘密通道:<br /><a href=\"http://www.loveyatou.top\" title=\"首页\">首页</a>", 10000);
         }
         _move = true;
         _x = e.pageX - parseInt($(this).css("left"));
         _y = e.pageY - parseInt($(this).css("top"));
     });
+    var stat_click=0;
     $(".mumu").mouseover(function () {
         $(this).fadeTo("300", 0.3);
-        stat_click++;
         var msg = mouseover_msgs[getRandomNumber(mouseover_msgs.length)];
         if (stat_click > 8 && stat_click % 8 == 0) {
             mouseTouch(msg)
@@ -63,13 +62,10 @@ function init() {
             showMessage(msg);
         }
     }).mouseout(function () {
+        stat_click++;
         $(this).fadeTo("300", 1)
     }).click(function () {
-        stat_click++;
-        var click_msgs = stat_click > 4 ? click_msgs_least : click_msgs_most;
-        if (stat_click > 4) {
-            click_msgs.push("你摸了我" + stat_click + "次了，给钱儿");
-        }
+        var click_msgs = stat_click > 4 ? click_msgs_least.concat(["你摸了我" + stat_click + "次，简直是阔怕！ミﾟДﾟ彡"]) : click_msgs_most;
         mouseTouch(click_msgs[getRandomNumber(click_msgs.length)])
     });
     $("#message").hover(function () {
@@ -261,7 +257,7 @@ function scrollbarMove() {
         );
     });
 }
-//显示消息函数
+//显示消息函数most
 function showMessage(a, b) {
     if (b == null) b = 10000;
     $("#message").hide().stop().html(a).fadeIn().fadeTo("1", 1).fadeOut(b);
